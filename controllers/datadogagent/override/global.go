@@ -206,7 +206,7 @@ func applySocketPathConfig(config *v2alpha1.GlobalConfig, manager feature.PodTem
 			manager.VolumeMount().AddVolumeMountToContainers(
 				&runtimeVolMount,
 				[]apicommonv1.AgentContainerName{
-					apicommonv1.NonPrivilegedMonoContainerName,
+					apicommonv1.NonPrivilegedMultiProcessAgentContainerName,
 				},
 			)
 			manager.Volume().AddVolume(&runtimeVol)
@@ -283,7 +283,7 @@ func applyKubeletConfig(config *v2alpha1.GlobalConfig, manager feature.PodTempla
 			manager.VolumeMount().AddVolumeMountToContainers(
 				&kubeletVolMount,
 				[]apicommonv1.AgentContainerName{
-					apicommonv1.NonPrivilegedMonoContainerName,
+					apicommonv1.NonPrivilegedMultiProcessAgentContainerName,
 				},
 			)
 			manager.Volume().AddVolume(&kubeletVol)

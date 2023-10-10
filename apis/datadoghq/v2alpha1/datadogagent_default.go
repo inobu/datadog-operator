@@ -88,6 +88,8 @@ const (
 
 	defaultKubeletAgentCAPath            = "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
 	defaultKubeletAgentCAPathHostPathSet = "/var/run/host-kubelet-ca.crt"
+
+	defaultContainerProcessStrategyType = commonv1.SingleProcessContainers
 )
 
 // DefaultDatadogAgent defaults the DatadogAgentSpec GlobalConfig and Features.
@@ -124,6 +126,12 @@ func defaultGlobalConfig(ddaSpec *DatadogAgentSpec) {
 			ddaSpec.Global.Kubelet.AgentCAPath = defaultKubeletAgentCAPathHostPathSet
 		} else {
 			ddaSpec.Global.Kubelet.AgentCAPath = defaultKubeletAgentCAPath
+		}
+	}
+
+	if ddaSpec.Global.ContainerProcessStrategy == nil {
+		ddaSpec.Global.ContainerProcessStrategy = &ContainerProcessStrategy{
+			Type: defaultContainerProcessStrategyType,
 		}
 	}
 }
